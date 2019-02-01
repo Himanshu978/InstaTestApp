@@ -21,7 +21,7 @@ Route::get('/testData', function(){
     ];
 });
 
-Route::get('/postData', function(Request $request){
+Route::post('/postData', function(Request $request){
     return $request->all();
 });
 

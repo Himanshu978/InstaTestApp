@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,21 +14,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/testData', function(){
-    return [
-        'username' => 'himanshu',
-        'age' => 22,
-        'city' => 'delhi'
-    ];
-});
 
-Route::post('/postData', function(Request $request){
-    return $request->all();
-});
+Route::post('/postData', 'Auth\LoginController@login');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware(['auth:api'])->group(function () {
+
+    Route::get('/testData', 'testController@testGet');
+
+});
+
 
 
 
